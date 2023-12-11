@@ -12,4 +12,17 @@
             "dest": "/app.js"
         }
     ]
+},
+{
+    "functions": {
+        "router/*.tsx": {
+            "memory": 1024
+        },
+        "router/*": {
+            "maxDuration": 10
+        },
+        "app.js": {
+            "maxDuration": 10
+        }
+    }
 }
