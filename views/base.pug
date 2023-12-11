@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        block head
+            meta(charset="UTF-8")
+            meta(name="viewport" content="width=device-width, initial-scale=1.0")
+            link(rel="stylesheet" href="/css/style.css")
+            link(rel="shortcut icon" href="img/favicon.png" type="image/png")
+            link( href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet")
+            // direct to stripe
+            script(src='https://js.stripe.com/v3/')
+            title Natours | #{title}
+
+body
+    // HEADER
+    include _header
+
+    //Content
+    block content
+        h1 This is a placeholder heading
+    //Footer
+    include _footer
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer")
+    //- script(src='/js/leaflet.js' defer)
+    script(src='/js/login.js' defer)
+    script(type="module" src='/js/index.js',defer)
+    script( src='/js/bundled/index.js')
+    //- script(src='https://js.stripe.com/v3/')
