@@ -25,7 +25,6 @@ if (signupForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('passwordConfirm').value;
-        console.log(name, email, password, passwordConfirm);
         signup(name, email, password, passwordConfirm);
     });
 }
@@ -57,7 +56,6 @@ if (userDataForm) {
         form.append('name', document.getElementById('name').value);
         form.append('email', document.getElementById('email').value);
         form.append('photo', document.getElementById('photo').files[0]);
-        console.log(form);
 
         updateSettings(form, 'data');
     });
@@ -109,13 +107,11 @@ if (bookBtn)
 const reviewForm = document.querySelector('.form--review');
 
 if (reviewForm) {
-    console.log(reviewForm)
     reviewForm.addEventListener('submit', async e => {
         e.preventDefault();
         const review = document.getElementById('review').value;
         const rating = document.getElementById('rating').value;
         const { user, tour } = JSON.parse(reviewForm.dataset.ids);
-        console.log(review, rating, user, tour)
         await reviewAndRating(rating, review, user, tour);
 
         document.getElementById('review').value = '';
