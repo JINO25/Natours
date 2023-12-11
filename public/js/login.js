@@ -2,7 +2,17 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-const apiUrl = `${window.location.origin}`
+// Assuming this code is running in a browser environment
+const currentUrl = window.location.href;
+
+// Extract the origin (protocol + hostname) from the current URL
+const currentOrigin = new URL(currentUrl).origin;
+
+// Combine the origin with the API path
+const apiPath = '/api/v1';
+
+// Combine the origin and API path to get the full API URL
+const apiUrl = `${currentOrigin}`;
 export const login = async (email, password) => {
     try {
         const res = await axios({
