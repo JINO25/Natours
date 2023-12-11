@@ -14,10 +14,7 @@
     ],
     "functions": {
         "app.js": {
-            "maxDuration": 30
-        },
-        "app.js": {
-            "maxDuration": 15
+            "maxDuration": 45
         }
     }
 }
