@@ -5,7 +5,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -86,13 +86,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-//Limit requests from the same API
-const limiter = rateLimit({
-    max: 100,
-    window: 60 * 60 * 1000,
-    message: 'Too many requests from this IP, please try again in an hour!'
-})
-app.use('/api', limiter);
+// //Limit requests from the same API
+// const limiter = rateLimit({
+//     max: 100,
+//     window: 60 * 60 * 1000,
+//     message: 'Too many requests from this IP, please try again in an hour!'
+// })
+// app.use('/api', limiter);
 
 //Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
