@@ -7,6 +7,12 @@ import { updateSettings } from './updateSetting';
 import { bookTour } from './stripe';
 import { reviewAndRating } from './review';
 
+// Assuming this code is running in a browser environment
+const currentUrl = window.location.href;
+// Extract the origin (protocol + hostname) from the current URL
+const currentOrigin = new URL(currentUrl).origin;
+// Combine the origin and API path to get the full API URL
+const apiUrl = `${currentOrigin}`;
 
 const mapBox = document.getElementById('map');
 const fileInput = document.querySelector('.form__upload');
@@ -25,7 +31,7 @@ if (signupForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('passwordConfirm').value;
-        signup(name, email, password, passwordConfirm);
+        signup(name, email, password, passwordConfirm, apiUrl);
     });
 }
 
@@ -35,9 +41,10 @@ const loginForm = document.querySelector('.form--login');
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
+
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        login(email, password);
+        login(email, password, apiUrl);
     });
 }
 
@@ -57,7 +64,7 @@ if (userDataForm) {
         form.append('email', document.getElementById('email').value);
         form.append('photo', document.getElementById('photo').files[0]);
 
-        updateSettings(form, 'data');
+        updateSettings(form, 'data', apiUrl);
     });
 }
 
@@ -86,7 +93,7 @@ if (userPasswordForm) {
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('password-confirm').value;
 
-        await updateSettings({ passwordCurrent, password, passwordConfirm }, 'password');
+        await updateSettings({ passwordCurrent, password, passwordConfirm }, 'password', apiUrl);
         document.querySelector('.btn--save-password').textContent = 'Save password';
         document.getElementById('password-current').value = '';
         document.getElementById('password').value = '';
@@ -101,7 +108,7 @@ if (bookBtn)
         e.target.textContent = 'Processing...';
         //destructuring
         const { tourId } = e.target.dataset;
-        bookTour(tourId);
+        bookTour(tourId, apiUrl);
     })
 
 const reviewForm = document.querySelector('.form--review');
@@ -112,7 +119,7 @@ if (reviewForm) {
         const review = document.getElementById('review').value;
         const rating = document.getElementById('rating').value;
         const { user, tour } = JSON.parse(reviewForm.dataset.ids);
-        await reviewAndRating(rating, review, user, tour);
+        await reviewAndRating(rating, review, user, tour, apiUrl);
 
         document.getElementById('review').value = '';
         document.getElementById('rating').value = '';

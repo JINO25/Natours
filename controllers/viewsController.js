@@ -28,17 +28,26 @@ exports.getTour = catchAsync(async (req, res, next) => {
     if (!tour) {
         return next(new AppError('There is no tour with that name.', 404));
     }
+
+    let booked = false;
+
+    // Check if the user is logged in
+    if (res.locals.user) {
+        // If logged in, check if the user has booked the tour
+        const booking = await Booking.findOne({
+            user: res.locals.user._id,
+            tour: tour._id
+        });
+
+        booked = !!booking;
+    }
+
     // const booking = await Booking.findOne({
-    //     user: res.locals.user,
-    //     tour: tour
-    // })
+    //     user: res.locals.user._id, // Assuming res.locals.user is the current user
+    //     tour: tour._id
+    // });
 
-    const booking = await Booking.findOne({
-        user: res.locals.user._id, // Assuming res.locals.user is the current user
-        tour: tour._id
-    });
-
-    const booked = !!booking;
+    // const booked = !!booking;
 
     // 2) Build template
     // 3) Render template using data from 1)

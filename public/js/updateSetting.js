@@ -22,11 +22,11 @@ import axios from 'axios';
 //     }
 // }
 
-export const updateSettings = async (data, type) => {
+export const updateSettings = async (data, type, apiUrl) => {
     try {
         const url = type === 'password'
-            ? '/api/v1/users/updatePassword'
-            : '/api/v1/users/updateMe';
+            ? `${apiUrl}/api/v1/users/updatePassword`
+            : `${apiUrl}/api/v1/users/updateMe`
 
         const res = await axios({
             method: 'PATCH',

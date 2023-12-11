@@ -3,11 +3,11 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const reviewAndRating = async (rating, review, user, tour) => {
+export const reviewAndRating = async (rating, review, user, tour, apiUrl) => {
     try {
         const res = await axios({
             method: 'POST',
-            url: '/api/v1/reviews',
+            url: `${apiUrl}/api/v1/reviews`,
             data: {
                 rating,
                 review,

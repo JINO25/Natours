@@ -2,12 +2,12 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const bookTour = async tourId => {
+export const bookTour = async (tourId, apiUrl) => {
     const stripe = Stripe('pk_test_oKhSR5nslBRnBZpjO6KuzZeX');
     try {
         // 1) Get checkout session from API
         const session = await axios(
-            `/api/v1/bookings/checkout-session/${tourId}`
+            `${apiUrl}/api/v1/bookings/checkout-session/${tourId}`
         );
         // console.log(session);
 
