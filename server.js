@@ -26,7 +26,7 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
     console.log(`App running on port ${port}...`);
 });
-server.timeout = 120000;
+server.timeout = 10000;
 
 process.on('unhandledRejection', err => {
     console.log(err.name, "\n", err.message);
