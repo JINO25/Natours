@@ -19,10 +19,10 @@
             "memory": 1024
         },
         "router/*": {
-            "maxDuration": 10
+            "maxDuration": 45
         },
         "app.js": {
-            "maxDuration": 10
+            "maxDuration": 45
         }
     }
 }
